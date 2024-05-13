@@ -244,20 +244,22 @@ let ChatService = class ChatService {
         //将更新标题名称的代码改为异步函数
         const updateTitleAsync = async () => {
             if ((groupInfo === null || groupInfo === void 0 ? void 0 : groupInfo.title) === '新对话') {
-                let chatTitle;
+                let chatTitle = "";
                 if (modelType === 1) {
                     chatTitle = await this.apiDataService.chatFree(`根据用户提问{${prompt}}，给这个对话取一个名字，不超过10个字`);
                 }
-                else {
-                    chatTitle = '创意 AI';
+                if(!chatTitle){//防止上面的请求出现问题
+                    chatTitle = prompt;
                 }
+                //防止回答超过很多个字，在这里预防一下
+                chatTitle = chatTitle.length > 20 ? chatTitle.slice(0, 20) : chatTitle;
                 await this.chatGroupService.update({
                     groupId,
                     title: chatTitle,
                     isSticky: false,
                     config: '',
                 }, req);
-                common_1.Logger.log(`${groupId} 更新标题名称为: ${chatTitle}`);
+                common_1.Logger.log(`Querying chat history for groupId: ${groupId} 更新标题名称为: ${chatTitle}`);
             }
         };
         
