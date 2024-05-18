@@ -95,7 +95,11 @@ let ModelsService = class ModelsService {
     async getBaseConfig(appId) {
         if (!this.modelTypes.length || !Object.keys(this.modelMaps).length)
             return;
-        const { keyType, modelName, model, deductType, deduct, isFileUpload } = this.modelMaps[1][0];
+        
+        // 使用Array.sort()根据modelOrder进行排序并取第一个元素
+        const firstModel = this.modelMaps[1].sort((a, b) => a.modelOrder - b.modelOrder)[0];
+
+        const { keyType, modelName, model, deductType, deduct, isFileUpload } = firstModel;
         return {
             modelInfo: { keyType, modelName, model, deductType, deduct, isFileUpload }
         };

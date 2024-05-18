@@ -252,7 +252,7 @@ let ChatService = class ChatService {
                     chatTitle = prompt;
                 }
                 //防止回答超过很多个字，在这里预防一下
-                chatTitle = chatTitle.length > 20 ? chatTitle.slice(0, 20) : chatTitle;
+                chatTitle = chatTitle.slice(0, 50);
                 await this.chatGroupService.update({
                     groupId,
                     title: chatTitle,
