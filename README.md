@@ -9,6 +9,7 @@
 - 修改了默认取名是对话的前几个字
 - 对话的取标题改为异步，优化体验
 - 新对话的默认模型是排序的第一个
+
 `其实和原版差不多，稍微更改`
 
 ## 页面预览
@@ -131,7 +132,7 @@
 
 ## 首先git本项目
 ```bash
-git clone git@github.com:RICHQAQ/99AI-RICHCHAT.git
+git clone https://github.com/RICHQAQ/99AI-RICHCHAT.git
 ```
 
 ## Docker 部署 （推荐）
